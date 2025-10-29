@@ -66,6 +66,24 @@ pipeline {
                 }
             }
         }
+        stage('Deploy from Nexus to Tomcat') {
+    steps {
+        script {
+            sh """
+            # Download the artifact from Nexus
+            curl -u $NEXUS_CRED_USR:$NEXUS_CRED_PSW \
+            -o country-service.war \
+            http://localhost:8082/repository/maven-releases/com/example/country-service/1.0.0/country-service-1.0.0.war
+
+            # Deploy to Tomcat
+            curl -u $TOMCAT_USER:$TOMCAT_PASS \
+            --upload-file country-service.war \
+            "$TOMCAT_URL/deploy?path=/country-service&update=true"
+            """
+        }
+    }
+}
+
     }
 
     post {
