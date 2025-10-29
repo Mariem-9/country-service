@@ -37,6 +37,23 @@ pipeline {
               }
           }
       }
+        stage('Deploy to Nexus') {
+            steps {
+                sh """
+                mvn deploy:deploy-file \
+                  -DrepositoryId=nexus \
+                  -Durl=$NEXUS_URL \
+                  -Dfile=target/country-service.war \
+                  -DgroupId=com.example \
+                  -DartifactId=country-service \
+                  -Dversion=1.0.0 \
+                  -Dpackaging=war \
+                  -DgeneratePom=true \
+                  -DnexusUsername=$NEXUS_CRED_USR \
+                  -DnexusPassword=$NEXUS_CRED_PSW
+                """
+            }
+        }
         stage('Deploy to Tomcat') {
             steps {
                 script {
