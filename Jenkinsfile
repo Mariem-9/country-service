@@ -10,6 +10,7 @@ pipeline {
         TOMCAT_USER = 'admin'
         TOMCAT_PASS = 'admin'
         TOMCAT_URL  = 'http://localhost:8081/manager/text' // Tomcat sur le nouveau port 8081
+        NEXUS_CRED = credentials('Nexus')
     }
 
     stages {
@@ -42,7 +43,7 @@ pipeline {
                 sh """
                 mvn deploy:deploy-file \
                   -DrepositoryId=nexus \
-                  -Durl=$NEXUS_URL \
+                  -Durl=http://localhost:8082/repository/maven-releases/ \
                   -Dfile=target/country-service.war \
                   -DgroupId=com.example \
                   -DartifactId=country-service \
