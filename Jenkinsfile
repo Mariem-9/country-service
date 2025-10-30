@@ -44,11 +44,11 @@ pipeline {
                 mvn deploy:deploy-file \
                   -DrepositoryId=nexus \
                   -Durl=http://localhost:8082/repository/maven-releases/ \
-                  -Dfile=target/country-service.war \
+                  -Dfile=target/country-service.jar \
+                  -Dpackaging=jar \
                   -DgroupId=com.example \
                   -DartifactId=country-service \
                   -Dversion=1.0.0 \
-                  -Dpackaging=war \
                   -DgeneratePom=true \
                   -DnexusUsername=$NEXUS_CRED_USR \
                   -DnexusPassword=$NEXUS_CRED_PSW
