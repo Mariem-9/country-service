@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.ensi.country_service.demo.beans.Country;
 
 public interface CountryRepository extends JpaRepository<Country,Integer> {
+	Country findByNameIgnoreCase(String name);
 
 }

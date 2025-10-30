@@ -36,6 +36,11 @@ public class CountryController {
 			return new ResponseEntity <>(HttpStatus.NOT_FOUND);
 		}
 	}
+//	@GetMapping("/getcountries")
+//	public ResponseEntity<List<Country>> getCountries() {
+//	    List<Country> countries = countryservice.getAllCountries();
+//	    return new ResponseEntity<>(countries, HttpStatus.FOUND); // was OK
+//	}
 	
 	@GetMapping("/getcountries/{id}")
 	public ResponseEntity <Country> getCountryById(@PathVariable(value ="id")int id) {
@@ -49,6 +54,12 @@ public class CountryController {
 			return new ResponseEntity <>(HttpStatus.NOT_FOUND);
 		}
 	}
+//	@GetMapping("/getcountries/{id}")
+//	public ResponseEntity<Country> getCountryById(@PathVariable int id) {
+//	    Country country = countryservice.getCountryById(id);
+//	    return new ResponseEntity<>(country, HttpStatus.FOUND);
+//	}
+
 	
 	@GetMapping("/getcountries/countryname")
 	public ResponseEntity <Country> getCountryByName(@RequestParam(value ="name")String name) {
@@ -62,6 +73,11 @@ public class CountryController {
 			return new ResponseEntity <>(HttpStatus.NOT_FOUND);
 		}
 	}
+//	@GetMapping("/getcountries/countryname")
+//	public ResponseEntity<Country> getCountryByName(@RequestParam String name) {
+//	    Country country = countryservice.getCountryByName(name);
+//	    return new ResponseEntity<>(country, HttpStatus.FOUND);
+//	}
 	
 	@PostMapping("/addcountry")
 	public ResponseEntity <Country> addCountry(@RequestBody Country country) {
@@ -75,7 +91,12 @@ public class CountryController {
 			return new ResponseEntity <>(HttpStatus.CONFLICT);
 		}
 	}
-	
+//	@PostMapping("/addcountry")
+//    public ResponseEntity<Country> addCountry(@RequestBody Country country) {
+//        Country created = countryservice.addCountry(country);
+//        return new ResponseEntity<>(created, HttpStatus.CREATED);
+//    }
+
 	@PutMapping("/updatecountry/{id}")
 	public ResponseEntity<Country> updateCountry(@PathVariable("id") int id, @RequestBody Country country) {
 	    try {
@@ -89,6 +110,7 @@ public class CountryController {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // 404 is better
 	    }
 	}
+	
 
 	
 	@DeleteMapping("/deletecountry/{id}")
@@ -105,5 +127,6 @@ public class CountryController {
 		}
 		return new ResponseEntity <Country>(country, HttpStatus.OK);
 	}
+	
 
 }

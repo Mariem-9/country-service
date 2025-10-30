@@ -1,0 +1,15 @@
+services:
+  country-servicev2.1:
+    build: ./country-service
+    container_name: country-service1
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+  country-servicev2.2:
+    build: ./country-service
+    container_name: country-service2
+    ports:
+      - "8081:8080"
+    expose:
+      - "8080"
