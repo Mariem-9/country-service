@@ -41,7 +41,7 @@ pipeline {
         stage('Deploy to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-                    sh """
+                    sh '''
                     mvn deploy:deploy-file \
                       -DrepositoryId=nexus \
                       -Durl=http://localhost:8082/repository/maven-releases/ \
@@ -53,10 +53,11 @@ pipeline {
                       -DgeneratePom=true \
                       -DnexusUsername=$NEXUS_USER \
                       -DnexusPassword=$NEXUS_PASS
-                    """
+                    '''
                 }
             }
         }
+
 
         stage('Deploy to Tomcat') {
             steps {
