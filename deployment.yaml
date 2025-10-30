@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-country-service2
+  labels:
+    app: my-country-service2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-country-service
+  template:
+    metadata:
+      labels:
+        app: my-country-service
+    spec:
+      containers:
+      - name: country-service
+        image: mariembenamor/country-servicev2:latest
+        ports:
+        - containerPort: 8080
