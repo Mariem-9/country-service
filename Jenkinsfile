@@ -45,7 +45,7 @@ pipeline {
                     mvn deploy:deploy-file \
                       -DrepositoryId=nexus \
                       -Durl=http://localhost:8082/repository/maven-releases/ \
-                      -Dfile=target/country-service.jar \
+                      -Dfile=target/country-service-0.0.1-SNAPSHOT.jar \
                       -DgroupId=com.example \
                       -DartifactId=country-service \
                       -Dversion=1.0.0 \
