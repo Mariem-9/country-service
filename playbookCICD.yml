@@ -3,12 +3,12 @@
   hosts: localhost  # Or your build/deployment server
   connection: local
 
-  # vars:
-  #   image_name: mariembenamor/my-app
-  #   image_tag: 7
-  #   dockerfile_path: './'
-  #   docker_registry_username: mariembenamor
-  #   docker_registry_password: dockerhup-9
+  vars:
+    image_name: mariembenamor/my-app
+    image_tag: 7
+    dockerfile_path: './'
+    # docker_registry_username: mariembenamor
+    # docker_registry_password: dockerhup-9
   
   vars_files:
     - vault.yml
@@ -16,9 +16,15 @@
   tasks:
     - name: Log in to Docker Hub
       community.general.docker_login:
-        username: "{{ docker_registry_username }}"
-        password: "{{ docker_registry_password }}"  # Use environment variable for password
+        username: "{{ dockerhub_username }}"
+        password: "{{ dockerhub_password }}"  # Use environment variable for password
         reauthorize: yes
+  # tasks:
+  #   - name: Log in to Docker Hub
+  #     community.general.docker_login:
+  #       username: "{{ docker_registry_username }}"
+  #       password: "{{ docker_registry_password }}"  # Use environment variable for password
+  #       reauthorize: yes
 
     - name: Build Docker image
       community.docker.docker_image:
