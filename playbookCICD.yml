@@ -3,12 +3,15 @@
   hosts: localhost  # Or your build/deployment server
   connection: local
 
-  vars:
-    image_name: mariembenamor/my-app
-    image_tag: 7
-    dockerfile_path: './'
-    docker_registry_username: mariembenamor
-    docker_registry_password: dockerhup-9
+  # vars:
+  #   image_name: mariembenamor/my-app
+  #   image_tag: 7
+  #   dockerfile_path: './'
+  #   docker_registry_username: mariembenamor
+  #   docker_registry_password: dockerhup-9
+  
+  vars_files:
+    - vault.yml
 
   tasks:
     - name: Log in to Docker Hub
