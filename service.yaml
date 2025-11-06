@@ -9,4 +9,4 @@ spec:
   ports:
   - port: 8080        # port interne du conteneur
     targetPort: 8080  # correspond au containerPort défini dans le deployment
-    nodePort: 32071   # port externe accessible depuis le navigateur
+    #nodePort: 32071   # port externe accessible depuis le navigateur
