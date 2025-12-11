@@ -3,7 +3,7 @@
 # Copy target/*.jar app.jar
 # Entrypoint ["java","-jar","/app.jar"]
 
-FROM openjdk:21-slim
+FROM openjdk:21
 
 VOLUME /tmp
 COPY target/*.jar app.jar
