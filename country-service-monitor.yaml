@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: country-service-monitor
+  namespace: monitoring # Important : le ServiceMonitor doit être dans le namespace où est Prometheus
+  labels:
+    # Ce label est le sélecteur standard utilisé par l'Operator Prometheus pour trouver les moniteurs
+    release: monitoring 
+spec:
+  # 1. Le Sélecteur de Service : Il dit à Prometheus QUEL Service surveiller.
+  selector:
+    matchLabels:
+      # DOIT CORRESPONDRE aux labels du SERVICE Kubernetes de votre application (pas du Deployment)
+      app: country-service 
+  endpoints:
+  - port: http-metrics # DOIT CORRESPONDRE au 'name' du port dans votre Service Kubernetes
+    path: /actuator/prometheus # Le chemin où votre application (via Actuator) expose les métriques
+  namespaceSelector:
+    matchNames:
+    - default # Le namespace où votre application est déployée (généralement 'default' ou 'production')
